@@ -1,0 +1,107 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
+    testImplementation 'org.testng:testng:7.10.0'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+
+    // ExtentReports dependencies
+    implementation group: 'com.relevantcodes', name: 'extentreports', version: '2.41.2'
+    testImplementation 'com.aventstack:extentreports:5.0.9'
+    testImplementation 'org.freemarker:freemarker:2.3.31'
+}
+
+jacoco {
+    toolVersion = "0.8.10" // Use the latest JaCoCo version
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // Use Java 17
+    }
+}
+
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+
+    finalizedBy jacocoTestReport
+
+    // Ensuring test tasks run before generating the report
+    doFirst {
+        println "Running tests..."
+    }
+
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nTEST RESULT: ${result.resultType}"
+            println "TEST SUMMARY: RAN ${result.testCount} TESTS, " +
+                    "${result.successfulTestCount} SUCCEEDED, " +
+                    "${result.failedTestCount} FAILED, " +
+                    "${result.skippedTestCount} SKIPPED"
+        }
+    }
+
+    testLogging {
+        events "STANDARD_OUT"
+        exceptionFormat = 'short'
+    }
+
+    testLogging.showStandardStreams = true
+    outputs.upToDateWhen { false }
+}
+
+jacocoTestReport {
+    dependsOn test // Ensure tests are run before generating the report
+    mustRunAfter startScripts // Ensure startScripts runs before jacocoTestReport
+
+    reports {
+        xml.required.set(false)
+        csv.required.set(false)
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir('jacocoHtml'))
+    }
+
+    // Exclude main classes and only include test classes
+    sourceDirectories.setFrom(files('src/test/java'))
+    classDirectories.setFrom(fileTree(dir: 'build/classes/java/test').files)
+    executionData.setFrom(fileTree(dir: buildDir, includes: ['**/jacoco/test.exec']))
+
+    doLast {
+        println "JaCoCo report generated. Check the HTML report in build/jacocoHtml."
+    }
+}
+
+task printClassDirs {
+    doLast {
+        def jacocoTask = tasks.jacocoTestReport
+        println "Source directories: ${jacocoTask.sourceDirectories.files.collect { it.path }}"
+        println "Class directories: ${jacocoTask.classDirectories.files.collect { it.path }}"
+        println "Execution data files: ${jacocoTask.executionData.files.collect { it.path }}"
+    }
+}
+
+jacocoTestReport.finalizedBy(printClassDirs)
+
+application {
+    mainClass = 'demo.App' // Replace with your actual main class
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}

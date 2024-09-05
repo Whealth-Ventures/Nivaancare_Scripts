@@ -1,8 +1,10 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +22,8 @@ public class TestCase1 {
      WebDriver driver;
     static ExtentReports report;
     static ExtentTest test;
+    String patientID;
+String adjustedPatientID;
 
  
     public WebDriver setup(){
@@ -59,15 +63,8 @@ private String generateRandomEmail() {
        return email.append("@gmail.com").toString();
    }
    private static final String[] hospitalNames = {
-    "Aashlok Hospital",
     "Sama Hospital",
-    "Sree Krishna Medical & Research Centre",
-    "Gouri Hospital",
-    "DardMantra Clinic",
-    "SIMM Healthcare",
-    "Agarwal's Gynae & Spine pain clinic",
-    "Irene Hospital",
-    "Apollo Spectra"
+    "Gouri Hospital"
 };
 
 public static String generateRandomHospitalName() {
@@ -433,14 +430,407 @@ test.log(LogStatus.PASS, "Adding Doctor to the team");
     }
 
 }
+public void addAppointment() throws InterruptedException{
+String hospital=generateRandomHospitalName();
+String service=generateRandomService2();
+    test.log(LogStatus.PASS, "Starting Testcase");
+    try{
+    driver.get("https://staging.nivaancare.co.in/dashboard");
+    
+    Thread.sleep(3000);
+        driver.get("https://staging.nivaancare.co.in/appointment");
+        Thread.sleep(5000);
+    WebElement ClinicTeam=driver.findElement(By.xpath("//*[@id='root']/div[2]/div[1]/div[3]/div/div/div[3]/div/div/div[2]"));
+    ClinicTeam.click();
+    Thread.sleep(2000);
+    List<WebElement> OpElements=driver.findElements(By.className("rs-checkbox-checker"));
+    for(WebElement opElement:OpElements){
+        if(opElement.getText().equalsIgnoreCase(hospital)){
+            opElement.click();
+            break;
+        }
+    }
+    Thread.sleep(2000);
+    Actions action = new Actions(driver);
+    
+    action.sendKeys(Keys.ESCAPE);
+    action.perform();
+    
+    WebElement Clinic=driver.findElement(By.xpath("//*[@id='root']/div[2]/div[1]/div[3]/div/div/div[5]/div[3]/div/div[2]"));
+    Clinic.click();
+    Thread.sleep(2000);
+    // List<WebElement> OpElements2=driver.findElements(By.className("rs-checkbox-checker"));
+    // for(WebElement opElement:OpElements2){
+    //     if(opElement.getText().equalsIgnoreCase("Dr Rohit Gulati")){
+    //         opElement.click();
+    //         break;
+    //     }
+    // }
+    driver.findElement(By.xpath("/html/body/div[5]/div/div[1]/div/div")).click();
+    Thread.sleep(5000);
+    Actions action2= new Actions(driver);
+    
+    action2.sendKeys(Keys.ESCAPE);
+    action2.perform();
+    Thread.sleep(5000);
+    WebElement addButton=driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div/div/div[2]/div[1]/div/div[3]/span"));
+    addButton.click();
+    Thread.sleep(2000);
+    WebElement PatientName=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[2]/div/div/div/div"));
+    PatientName.click();
+    Thread.sleep(2000);
+    
+    // WebElement search=driver.findElement(By.xpath("//*[@placeholder='Search']"));
+    // search.sendKeys("yWgjU9y3bk");
+    // search.sendKeys(Keys.ENTER);
+    // List<WebElement> patients=driver.findElements(By.className("rs-picker-select-menu-item"));
+    // for(WebElement patient: patients){
+    //     if(patient.getText().equalsIgnoreCase("yWgjU9y3bk")){
+    //         patient.click();
+    //         break;
+    //         }
+    //         }
+    driver.findElement(By.xpath("/html/body/div[6]/div[2]/div[2]/div[1]/span")).click();
+     Thread.sleep(3000);
+    
+    WebElement AppointmentType=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[3]/div/div/div"));
+    Thread.sleep(2000);
+    AppointmentType.click();
+    Thread.sleep(2000);
+    List<WebElement> modes=driver.findElements(By.className("rs-picker-select-menu-item"));
+    for(WebElement mode: modes){
+        if(mode.getText().equalsIgnoreCase("Physical")){
+            mode.click();
+            break;
+            }
+            }
+    
+    Thread.sleep(2000);
+    WebElement service2=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[6]/div/div/div/div"));
+    Thread.sleep(2000);
+    service2.click();
+    Thread.sleep(2000);
+    List<WebElement> services=driver.findElements(By.className("rs-picker-select-menu-item"));
+    for(WebElement service1: services){
+        if(service1.getText().equalsIgnoreCase(service)){
+            service1.click();
+            break;
+            }
+            }
+    Thread.sleep(3000);
+    WebElement timeslot=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[9]/div/div[2]"));
+    Thread.sleep(2000);
+    timeslot.click();
+        Thread.sleep(2000);
+    
+    
+        WebElement AppointmentFee=driver.findElement(By.xpath(("//*[@placeholder='Appointment Fee']")));
+        AppointmentFee.sendKeys("1000");
+        Thread.sleep(2000);
+        AppointmentFee.sendKeys(Keys.ENTER);
+        Thread.sleep(2000);
+    
+        WebElement payElement=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[11]/div[1]/div"));
+        payElement.click();
+        Thread.sleep(2000);
+    
+            Thread.sleep(2000);
+            test.log(LogStatus.PASS, "Adding appointment passed");
+    }
+    catch(Exception e){
+        test.log(LogStatus.FAIL, "Adding appointment failed");
+    }
+}
+public void AddPatientDetailsForAppointmentCase2() throws InterruptedException {
+    String hospital=generateRandomHospitalName();
+    String service=generateRandomService2();
+    driver.get("https://staging.nivaancare.co.in/dashboard");
+Thread.sleep(3000);
+    driver.get(("https://staging.nivaancare.co.in/appointment"));
+    Thread.sleep(3000);
+    WebElement AddAppointment=driver.findElement(By.xpath("//*[@id='root']/div[2]/div[1]/div[3]/div/div/div[6]"));
+    AddAppointment.click();
+    Thread.sleep(2000);
+    WebElement PatientName=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[2]/div/div/div/div"));
+    PatientName.click();
+    // List<WebElement> patients=driver.findElements(By.className("rs-picker-select-menu-item"));
+    // for(WebElement patient: patients){
+    //     if(patient.getText().equalsIgnoreCase("yWgjU9y3bk")){
+    //         patient.click();
+    //         break;
+    //         }
+    //         }
+    driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[2]/div[3]/span")).click();
+     Thread.sleep(3000);
 
+WebElement AppointmentType=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[3]/div/div/div"));
+Thread.sleep(2000);
+AppointmentType.click();
+Thread.sleep(2000);
+// List<WebElement> modes=driver.findElements(By.className("rs-picker-select-menu-item"));
+// for(WebElement mode: modes){
+//     if(mode.getText().equalsIgnoreCase("Virtual")){
+//         mode.click();
+//         break;
+//         }
+//         }
+driver.findElement(By.xpath("/html/body/div[3]/div[2]/div/div[2]/span")).click();
+Thread.sleep(2000);
 
+WebElement Clinic=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[4]/div/div/div"));
+Clinic.click();
+Thread.sleep(2000);
+List<WebElement> clinics=driver.findElements(By.className("rs-picker-select-menu-item"));
+    for(WebElement clinic: clinics){
+        if(clinic.getText().equalsIgnoreCase(hospital)){
+            clinic.click();
+            break;
+        }
+    }
+WebElement DocElement=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[5]/div/div/div/div"));
+DocElement.click();
+Thread.sleep(2000);
+// List<WebElement> docs=driver.findElements(By.className("rs-picker-select-menu-item"));
+// for(WebElement doc: docs){
+//     if(doc.getText().equalsIgnoreCase("Dr Rohit Gulati")){
+//         doc.click();
+//         break;
+//         }
+//         }
+driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[2]/div[1]/span")).click();
+        Thread.sleep(3000);
 
+        WebElement service1=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[7]/div/div/div/div"));
+        service1.click();
+        Thread.sleep(2000);
+        List<WebElement> services=driver.findElements(By.className("rs-picker-select-menu-item"));
+        for(WebElement service2: services){
+            if(service2.getText().equalsIgnoreCase(service)){
+                service2.click();
+                break;
+                }
+                }
+                Thread.sleep(3000);
+        WebElement timeslot=driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div[2]/div/div[10]/div/div[2]"));
+        Thread.sleep(2000);
+        timeslot.click();
+            Thread.sleep(2000);
+        
+        
+            WebElement AppointmentFee=driver.findElement(By.xpath(("//*[@placeholder='Appointment Fee']")));
+            AppointmentFee.sendKeys("1000");
+            Thread.sleep(2000);
+            AppointmentFee.sendKeys(Keys.ENTER);
+            Thread.sleep(2000);   
+            WebElement CreateAndPay=driver.findElement(By.xpath("//div[text()=' Appointment & Record Payment']"));
+            Thread.sleep(2000);
+            CreateAndPay.click();
+            Thread.sleep(5000);
+            String text=driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div[2]/div[2]/div[1]/div")).getText();
+            System.out.println(text);
+            WebElement dropdown = driver.findElement(By.xpath("//*[@id='dialog-:r7:']/div/div/div[2]/div[2]/div[2]/div/div/div/div"));
+            dropdown.click();
+
+            // Wait for the dropdown options to be visible (if necessary, add explicit wait here)
+            Thread.sleep(1000); // Using Thread.sleep for simplicity, replace with WebDriverWait for better practice
+
+            // Locate and select the "No Show" option
+            WebElement noShowOption = driver.findElement(By.xpath("//span[text()='No Show']"));
+            noShowOption.click();
+                Thread.sleep(2000);
+   Thread.sleep(2000);
+  WebElement recordPayment=driver.findElement(By.xpath("//div[text()='Record Payment']"));
+   recordPayment.click();
+  Thread.sleep(2000);
+    }
+    public void VerifyStatus() throws InterruptedException {
+        String hospital=generateRandomHospitalName();
+String service=generateRandomService2();
+        test.log(LogStatus.INFO, "VerifyStatus test started");
+        driver.get("https://staging.nivaancare.co.in/patient");
+        Thread.sleep(3000);
+        WebElement patientCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div"));
+        String patientCountText = patientCountElement.getText();
+        String extractedPatientID = patientCountText.replaceAll("\\D+", ""); // Extracts the number only
+        try {
+            int patientIDInt = Integer.parseInt(extractedPatientID);
+            adjustedPatientID = String.valueOf(patientIDInt + 2516); // Adjust logic as needed
+            test.log(LogStatus.INFO, "Extracted patient ID: " + extractedPatientID);
+            test.log(LogStatus.INFO, "Calculated adjusted patient ID: " + adjustedPatientID);
+        } catch (NumberFormatException e) {
+            test.log(LogStatus.ERROR, "Failed to extract patient ID from UI: " + e.getMessage());
+        }
+        try {
+            driver.get("https://staging.nivaancare.co.in");
+            test.log(LogStatus.INFO, "Navigated to main page");
+    
+            driver.get("https://staging.nivaancare.co.in/patient");
+            test.log(LogStatus.INFO, "Navigated to patient page");
+            Thread.sleep(2000);
+    
+            driver.get("https://staging.nivaancare.co.in/patient/"+ adjustedPatientID +"/dashboard");
+            test.log(LogStatus.INFO, "Navigated to specific patient dashboard");
+            Thread.sleep(2000);
+    
+            WebElement editStatus = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[1]/div[1]/div[2]/div/div[1]/div/div"));
+            editStatus.click();
+            test.log(LogStatus.INFO, "Clicked on edit status");
+            Thread.sleep(2000);
+    
+            WebElement pmsStatus = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[1]/div[1]/div[2]/div/div[1]/div"));
+            if(!pmsStatus.getText().equals("PMS Consult")){
+            pmsStatus.click();
+            test.log(LogStatus.INFO, "Clicked on PMS Consult");
+    
+            List<WebElement> statuses = driver.findElements(By.className("rs-dropdown-item"));
+            for (WebElement elem : statuses) {
+                if (elem.getText().contains("PMS Consult")) {
+                    elem.click();
+                    test.log(LogStatus.INFO, "Selected status: PMS Consult");
+                    break;
+                }
+            }
+            Thread.sleep(2000);
+    
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            test.log(LogStatus.INFO, "Accepted alert");
+        }
+        else{
+            test.log(LogStatus.INFO, "Status is already PMS Consult");
+        }
+            WebElement appointment = driver.findElement(By.xpath("//div[text()='Appointments']"));
+            appointment.click();
+            test.log(LogStatus.INFO, "Clicked on Appointments");
+            Thread.sleep(2000);
+    
+            WebElement addAppointment = driver.findElement(By.xpath("//button[text()=' Add Appointment']"));
+            addAppointment.click();
+            test.log(LogStatus.INFO, "Clicked on Add Appointment");
+            Thread.sleep(2000);
+    
+            WebElement appointmentType = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[2]/div/div/div"));
+            appointmentType.click();
+            test.log(LogStatus.INFO, "Clicked on Appointment Type");
+            Thread.sleep(2000);
+    
+            // List<WebElement> appointmentTypes = driver.findElements(By.className("rs-picker-select-menu-item"));
+            // for (WebElement elem : appointmentTypes) {
+            //     if (elem.getText().contains("Physical")) {
+            //         elem.click();
+            //         test.log(LogStatus.INFO, "Selected Appointment Type: Physical");
+            //         break;
+            //     }
+            // }
+            driver.findElement(By.xpath(" (//span[contains(@class, 'rs-picker-select-menu-item')])[1]")).click();
+            Thread.sleep(2000);
+            WebElement clinic = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[3]/div/div/div"));
+            clinic.click();
+            test.log(LogStatus.INFO, "Clicked on Clinic");
+            Thread.sleep(4000);
+    
+            WebElement searchInput = driver.findElement(By.xpath("//*[@placeholder='Search']"));
+            searchInput.sendKeys(hospital);
+            searchInput.sendKeys(Keys.ENTER);
+            test.log(LogStatus.INFO, "Searched for Clinic: "+hospital);
+    
+            // // WebElement span = driver.findElement(By.xpath("//span[text()='Dummy 2']"));
+            // // span.click();
+            // // test.log(LogStatus.INFO, "Selected Clinic: Dummy 2");
+            // // Thread.sleep(2000);
+    
+            WebElement doctor = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[4]/div/div/div"));
+            doctor.click();
+            test.log(LogStatus.INFO, "Clicked on Doctor");
+            Thread.sleep(2000);
+    
+            // // List<WebElement> doctors = driver.findElements(By.className("rs-picker-select-menu-item"));
+            // // for (WebElement elem : doctors) {
+            // //     if (elem.getText().contains("Onlyfortestingtobedeleted")) {
+            // //         elem.click();
+            // //         test.log(LogStatus.INFO, "Selected Doctor: Onlyfortestingtobedeleted");
+            // //         break;
+            // //     }
+            // // }
+            driver.findElement(By.xpath(" (//span[contains(@class, 'rs-picker-select-menu-item')])[1]")).click();
+            Thread.sleep(2000);
+    
+            WebElement service1 = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[5]/div/div/div"));
+            service1.click();
+            test.log(LogStatus.INFO, "Clicked on Service");
+            Thread.sleep(2000);
+    
+            List<WebElement> services = driver.findElements(By.className("rs-picker-select-menu-item"));
+            for (WebElement elem : services) {
+                if (elem.getText().equalsIgnoreCase(service)) {
+                    elem.click();
+                    test.log(LogStatus.INFO, "Selected Service: "+ service);
+                    break;
+                }
+            }
+            Thread.sleep(2000);
+
+     // Get today's day number
+     String day = String.valueOf(LocalDate.now().getDayOfMonth());
+
+     // Open the date picker
+     driver.findElement(By.xpath("//input[@placeholder='yyyy-MM-dd']")).click();
+Thread.sleep(3000);
+     // Select today's date
+     driver.findElement(By.xpath("//div[contains(@class, 'rs-calendar-table-cell-content')]/span[text()='" + day + "']")).click();
+ 
+            WebElement btn = driver.findElement(By.xpath("//button[text()='OK']"));
+            btn.click();
+            test.log(LogStatus.INFO, "Clicked OK after selecting date");
+            Thread.sleep(2000);
+    
+            WebElement timeSlot = driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[8]/div/div[1]"));
+            timeSlot.click();
+            test.log(LogStatus.INFO, "Clicked on Time Slot");
+            Thread.sleep(2000);
+    
+            WebElement fee = driver.findElement(By.xpath("//*[@placeholder='Appointment Fee']"));
+            fee.sendKeys("1000");
+            test.log(LogStatus.INFO, "Entered Appointment Fee: 1000");
+            Thread.sleep(2000);
+    
+            WebElement createAndPay = driver.findElement(By.xpath("//div[text()=' Appointment & Record Payment']"));
+            createAndPay.click();
+            test.log(LogStatus.INFO, "Clicked on Create and Record Payment");
+            Thread.sleep(10000);
+    String text=driver.findElement(By.xpath("//div[@class='recordPayment-top-box d-flex justify-content-between align-items-start mb-3']")).getText();
+    System.out.println(text);
+    test.log(LogStatus.INFO, "Appointment created successfully");
+    test.log(LogStatus.INFO, "Appointment details "+text);
+
+            WebElement dropdown = driver.findElement(By.xpath("//span[text()='Select']"));
+            dropdown.click();
+            test.log(LogStatus.INFO, "Clicked on dropdown to select No Show option");
+            Thread.sleep(10000);
+    
+            WebElement noShowOption = driver.findElement(By.xpath("//span[contains(@class, 'rs-picker-select-menu-item')][contains(text(), 'No Show')]"));
+            noShowOption.click();
+            test.log(LogStatus.INFO, "Selected No Show option");
+            Thread.sleep(2000);
+    
+            WebElement recordPayment = driver.findElement(By.xpath("//div[text()='Record Payment']"));
+            recordPayment.click();
+            test.log(LogStatus.PASS, "Appointment verified and payment recorded successfully");
+    
+        } catch (Exception e) {
+            test.log(LogStatus.FAIL, "Test failed with exception: " + e.getMessage());
+        }
+                 }
+        // 
     @Test
     public void testcase1() throws InterruptedException{
-   WebDriver driver1= setup();
-    login(driver1);
-    addDoctorsDetails("10:00AM", "04:00PM");
-    tearDown();
+        TestCase1 test=new TestCase1();
+   WebDriver driver1= test.setup();
+    test.login(driver1);
+    test.addDoctorsDetails("10:00AM", "04:00PM");
+  test.addAppointment();
+  test.AddPatientDetailsForAppointmentCase2();
+  test.VerifyStatus();
+    test.tearDown();
     }
 }

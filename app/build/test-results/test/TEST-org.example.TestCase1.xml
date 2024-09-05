@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.TestCase1" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-04T17:55:00" hostname="indianrenterss-MacBook-Pro.local" time="39.029">
+<testsuite name="org.example.TestCase1" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-05T06:44:11" hostname="indianrenterss-MacBook-Pro.local" time="229.807">
   <properties/>
-  <testcase name="testcase1" classname="org.example.TestCase1" time="39.029"/>
+  <testcase name="testcase1" classname="org.example.TestCase1" time="229.807"/>
   <system-out><![CDATA[Initializing the driver
+Appointment Summary
+child's friend (M, 5)
+Ph: 8987654356
+5 Sept 2024, 01:15 PM - 01:30 PM
+With Dr Garima Gupta
+break
+At Clinic Gouri Hospital
+Total Fee :
+currency_rupee
+1000.00
+Remaining Fee :
+currency_rupee
+1000.00
+Appointment Summary
+postman_test4 (M, 46)
+Ph: 8277409868
+5 Sept 2024, 01:00 PM - 01:15 PM
+With Dr Garima Gupta
+procedure
+At Clinic Gouri Hospital
+Total Fee :
+currency_rupee
+1000.00
+Remaining Fee :
+currency_rupee
+1000.00
 ]]></system-out>
-  <system-err><![CDATA[Sep 04, 2024 11:25:01 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Sep 05, 2024 12:14:13 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 128
-Sep 04, 2024 11:25:01 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
-WARNING: Unable to find version of CDP to use for 128.0.6613.114. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Sep 05, 2024 12:14:13 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 128.0.6613.115. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>

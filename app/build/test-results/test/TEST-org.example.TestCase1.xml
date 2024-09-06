@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.TestCase1" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-05T10:25:01" hostname="indianrenterss-MacBook-Pro.local" time="218.072">
+<testsuite name="org.example.TestCase1" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-06T06:55:02" hostname="indianrenterss-MacBook-Pro.local" time="305.908">
   <properties/>
-  <testcase name="testcase1" classname="org.example.TestCase1" time="218.072"/>
+  <testcase name="testcase1" classname="org.example.TestCase1" time="305.908"/>
   <system-out><![CDATA[Initializing the driver
 Appointment Summary
-child's friend (M, 5)
-Ph: 8987654356
-5 Sept 2024, 02:45 PM - 03:00 PM
+test fam (F, 32)
+Ph: 7654369898
+6 Sept 2024, 11:15 AM - 11:30 AM
 With Dr Garima Gupta
-consult
+followup
 At Clinic Gouri Hospital
 Total Fee :
 currency_rupee
@@ -17,11 +17,11 @@ Remaining Fee :
 currency_rupee
 1000.00
 Appointment Summary
-TN (M, 55)
-Ph: 9451543762
-5 Sept 2024, 02:15 PM - 02:30 PM
+postman_test4 (M, 46)
+Ph: 8277409868
+6 Sept 2024, 11:00 AM - 11:15 AM
 With Dr Garima Gupta
-break
+crp
 At Clinic Gouri Hospital
 Total Fee :
 currency_rupee
@@ -29,10 +29,11 @@ currency_rupee
 Remaining Fee :
 currency_rupee
 1000.00
+Alert Text: Are you sure, you want to publish prescription?
 ]]></system-out>
-  <system-err><![CDATA[Sep 05, 2024 3:55:03 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Sep 06, 2024 12:25:03 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 128
-Sep 05, 2024 3:55:03 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
-WARNING: Unable to find version of CDP to use for 128.0.6613.115. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Sep 06, 2024 12:25:03 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 128.0.6613.120. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>

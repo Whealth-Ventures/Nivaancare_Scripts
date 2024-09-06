@@ -847,7 +847,160 @@ Thread.sleep(3000);
             test.log(LogStatus.FAIL, "Test failed with exception: " + e.getMessage());
         }
                  }
-        // 
+      public void addPrescription() throws InterruptedException{
+
+                test.log(LogStatus.INFO, "Add Prescription test started");
+                driver.get("https://staging.nivaancare.co.in/patient");
+                Thread.sleep(3000);
+                WebElement patientCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div"));
+                String patientCountText = patientCountElement.getText();
+                String extractedPatientID = patientCountText.replaceAll("\\D+", ""); // Extracts the number only
+                try {
+                    int patientIDInt = Integer.parseInt(extractedPatientID);
+                    adjustedPatientID = String.valueOf(patientIDInt + 2515); // Adjust logic as needed
+                    test.log(LogStatus.INFO, "Extracted patient ID: " + extractedPatientID);
+                    test.log(LogStatus.INFO, "Calculated adjusted patient ID: " + adjustedPatientID);
+                } catch (NumberFormatException e) {
+                    test.log(LogStatus.ERROR, "Failed to extract patient ID from UI: " + e.getMessage());
+                }
+                try {
+                    driver.get("https://staging.nivaancare.co.in");
+                    test.log(LogStatus.INFO, "Navigated to main page");
+            
+                    driver.get("https://staging.nivaancare.co.in/patient");
+                    test.log(LogStatus.INFO, "Navigated to patient page");
+                    Thread.sleep(2000);
+            
+                    driver.get("https://staging.nivaancare.co.in/patient/"+ adjustedPatientID +"/dashboard");
+                    test.log(LogStatus.INFO, "Navigated to specific patient dashboard");
+                    Thread.sleep(5000);
+                    driver.findElement(By.xpath("//div[text()='Prescription']")).click();
+                    test.log(LogStatus.INFO, "Clicked on Prescription tab");
+                    Thread.sleep(2000);
+                    driver.findElement(By.xpath("//button[text()=' New Prescription']")).click();
+                    test.log(LogStatus.INFO, "Clicked on New Prescription button");
+                    Thread.sleep(6000);
+                    driver.findElement(By.xpath("//*[@placeholder='YYYY-MM-DD']")).click();
+                    Thread.sleep(4000);
+                    By calendarTableLocator = By.xpath("div.rs-calendar-table-cell");
+
+                    // Find all date cells within the calendar table
+                    List<WebElement> dateCells = driver.findElements(calendarTableLocator);
+            
+                    // Iterate through each date cell
+                    for (WebElement dateCell : dateCells) {
+                        // Check if the cell has the "rs-calendar-table-cell-is-today" class, indicating it's today's date
+                        if (dateCell.getAttribute("class").contains("rs-calendar-table-cell-is-today")) {
+                            // Click on the cell to select today's date
+                            dateCell.click();
+                            break; // Exit the loop once today's date is selected
+                        }
+                    }
+                    Thread.sleep(4000);
+                    driver.findElement(By.xpath("//button[text()='OK']")).click();
+                    Thread.sleep(2000);
+                    test.log(LogStatus.INFO, "Selected date");
+                driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div[2]/div[1]/div/div[10]/div/div/div/div[2]")).click();
+                Thread.sleep(2000);
+                 // Assuming the checkbox elements have the following XPath
+                 String checkboxLabel="Tests";
+        By checkboxLocator = By.xpath("//div[@class='rs-checkbox-checker']/label[contains(text(), '" + checkboxLabel + "')]");
+
+        // Find the checkbox element based on the label text
+        WebElement checkboxElement = driver.findElement(checkboxLocator);
+
+        // Click on the checkbox to select it
+        checkboxElement.click();
+        Thread.sleep(2000);
+        test.log(LogStatus.INFO, "Selected Tests checkbox");
+                driver.findElement(By.xpath("//div[text()='Save Details']")).click();
+                Thread.sleep(5000);
+                WebElement publiElement= driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div[3]/div/div/div/div[1]/div[2]/div[4]/div/span"));
+                   Thread.sleep(2000);
+                   publiElement.click();
+                    //publish the report 
+                Thread.sleep(3000);
+                test.log(LogStatus.INFO, "click on publish element");
+                    WebElement publish =driver.findElement(By.xpath("//*[@class='rs-btn rs-btn-primary']"));
+                    publish.click();
+                    Thread.sleep(3000);
+                    test.log(LogStatus.INFO, "click on publish button");
+                    //Alert handling
+                     // Switch the focus to the alert
+                        Alert alert = driver.switchTo().alert();
+                
+                        // Get the text of the alert (optional)
+                        String alertText = alert.getText();
+                        System.out.println("Alert Text: " + alertText);
+                
+                        // Accept the alert (click OK)
+                        alert.accept();
+                        Thread.sleep(5000);
+                        test.log(LogStatus.INFO, "Alert accepted");
+                        test.log(LogStatus.PASS, "Prescription added successfully");
+
+
+      } 
+      catch(Exception e){
+test.log(LogStatus.FAIL, "Add Prescription failed");
+      }
+    }
+    public void AddDepartment() throws InterruptedException{
+        test.log(LogStatus.INFO, "Add Prescription test started");
+        driver.get("https://staging.nivaancare.co.in/patient");
+        Thread.sleep(3000);
+        WebElement patientCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div"));
+        String patientCountText = patientCountElement.getText();
+        String extractedPatientID = patientCountText.replaceAll("\\D+", ""); // Extracts the number only
+        try {
+            int patientIDInt = Integer.parseInt(extractedPatientID);
+            adjustedPatientID = String.valueOf(patientIDInt + 2515); // Adjust logic as needed
+            test.log(LogStatus.INFO, "Extracted patient ID: " + extractedPatientID);
+            test.log(LogStatus.INFO, "Calculated adjusted patient ID: " + adjustedPatientID);
+        } catch (NumberFormatException e) {
+            test.log(LogStatus.ERROR, "Failed to extract patient ID from UI: " + e.getMessage());
+        }
+        try {
+            driver.get("https://staging.nivaancare.co.in");
+            test.log(LogStatus.INFO, "Navigated to main page");
+    
+            driver.get("https://staging.nivaancare.co.in/patient");
+            test.log(LogStatus.INFO, "Navigated to patient page");
+            Thread.sleep(2000);
+    
+            driver.get("https://staging.nivaancare.co.in/patient/"+ adjustedPatientID +"/dashboard");
+            test.log(LogStatus.INFO, "Navigated to specific patient dashboard");
+            Thread.sleep(5000);
+            driver.findElement(By.xpath("//button[text()=' Department']")).click();
+            test.log(LogStatus.INFO, "click on department button");
+            Thread.sleep(5000);
+            driver.findElement(By.xpath("//span[text()='Select Department']")).click();
+            test.log(LogStatus.INFO, "click on select department button");
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@class='rs-picker-select-menu-item' and text()='PMS']")).click();
+            test.log(LogStatus.INFO, "select department");
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//span[text()='Doctor']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@class='rs-picker-select-menu-item' and text()='Dr Rohit Gulati']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//span[text()='Select Status']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@class='rs-picker-select-menu-item' and text()='1st Consult Done']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//span[text()='Consultant Mode']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@class='rs-picker-select-menu-item' and text()='In-Hospital']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//button[text()='Save']")).click();
+            Thread.sleep(2000);
+            test.log(LogStatus.PASS, "Add Department test completed");
+
+        } 
+        catch(Exception e){
+  test.log(LogStatus.FAIL, "Add Department  failed");
+        }
+      }
     @Test
     public void testcase1() throws InterruptedException{
         TestCase1 test=new TestCase1();
@@ -856,6 +1009,9 @@ Thread.sleep(3000);
     test.addDoctorsDetails("10:00AM", "04:00PM");
   test.AddPatientDetailsForAppointmentCase2();
   test.VerifyStatus();
+test.AddDepartment();
+  test.addPrescription();
+
     test.tearDown();
     }
 }

@@ -213,12 +213,12 @@ public void addDoctorsDetails(String startTime, String endTime) throws Interrupt
 <span class="fc" id="L213">    WebElement SElement=driver.findElement(By.xpath(&quot;//*[@placeholder='Select']&quot;));</span>
 <span class="fc" id="L214">    SElement.sendKeys(service);</span>
 <span class="fc" id="L215">    List&lt;WebElement&gt; options3=driver.findElements(By.xpath(&quot;//*[@class='option    ']&quot;));</span>
-<span class="fc bfc" id="L216" title="All 2 branches covered.">    for(WebElement option:options3){</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">    for(WebElement option:options3){</span>
 <span class="pc bpc" id="L217" title="1 of 2 branches missed.">        if(option.getText().contains(service)){</span>
-<span class="nc" id="L218">            option.click();</span>
-<span class="nc" id="L219">            break;</span>
+<span class="fc" id="L218">            option.click();</span>
+<span class="fc" id="L219">            break;</span>
         }
-<span class="fc" id="L221">    }</span>
+<span class="nc" id="L221">    }</span>
 <span class="fc" id="L222">    Thread.sleep(2000);</span>
 <span class="fc" id="L223">    test.log(LogStatus.INFO, &quot;Assigned service : &quot; +service);</span>
 <span class="fc" id="L224">    WebElement mobileNo=driver.findElement(By.xpath(&quot;//*[@placeholder='10 Digit Mobile Number']&quot;));</span>
@@ -624,11 +624,11 @@ public void AddPatientDetailsForAppointmentCase2() throws InterruptedException {
 <span class="fc" id="L624">        Thread.sleep(2000);</span>
 <span class="fc" id="L625">        List&lt;WebElement&gt; services=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
 <span class="pc bpc" id="L626" title="1 of 2 branches missed.">        for(WebElement service2: services){</span>
-<span class="pc bpc" id="L627" title="1 of 2 branches missed.">            if(service2.getText().equalsIgnoreCase(service)){</span>
+<span class="fc bfc" id="L627" title="All 2 branches covered.">            if(service2.getText().equalsIgnoreCase(service)){</span>
 <span class="fc" id="L628">                service2.click();</span>
 <span class="fc" id="L629">                break;</span>
                 }
-<span class="nc" id="L631">                }</span>
+<span class="fc" id="L631">                }</span>
 <span class="fc" id="L632">                Thread.sleep(3000);</span>
 <span class="fc" id="L633">        WebElement timeslot=driver.findElement(By.xpath(&quot;/html/body/div[3]/div/div/div/div[2]/div/div[10]/div/div[2]&quot;));</span>
 <span class="fc" id="L634">        Thread.sleep(2000);</span>
@@ -847,16 +847,172 @@ public void AddPatientDetailsForAppointmentCase2() throws InterruptedException {
 <span class="nc" id="L847">            test.log(LogStatus.FAIL, &quot;Test failed with exception: &quot; + e.getMessage());</span>
 <span class="fc" id="L848">        }</span>
 <span class="fc" id="L849">                 }</span>
-        // 
+      public void addPrescription() throws InterruptedException{
+
+<span class="fc" id="L852">                test.log(LogStatus.INFO, &quot;Add Prescription test started&quot;);</span>
+<span class="fc" id="L853">                driver.get(&quot;https://staging.nivaancare.co.in/patient&quot;);</span>
+<span class="fc" id="L854">                Thread.sleep(3000);</span>
+<span class="fc" id="L855">                WebElement patientCountElement = driver.findElement(By.xpath(&quot;/html/body/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div&quot;));</span>
+<span class="fc" id="L856">                String patientCountText = patientCountElement.getText();</span>
+<span class="fc" id="L857">                String extractedPatientID = patientCountText.replaceAll(&quot;\\D+&quot;, &quot;&quot;); // Extracts the number only</span>
+                try {
+<span class="fc" id="L859">                    int patientIDInt = Integer.parseInt(extractedPatientID);</span>
+<span class="fc" id="L860">                    adjustedPatientID = String.valueOf(patientIDInt + 2515); // Adjust logic as needed</span>
+<span class="fc" id="L861">                    test.log(LogStatus.INFO, &quot;Extracted patient ID: &quot; + extractedPatientID);</span>
+<span class="fc" id="L862">                    test.log(LogStatus.INFO, &quot;Calculated adjusted patient ID: &quot; + adjustedPatientID);</span>
+<span class="nc" id="L863">                } catch (NumberFormatException e) {</span>
+<span class="nc" id="L864">                    test.log(LogStatus.ERROR, &quot;Failed to extract patient ID from UI: &quot; + e.getMessage());</span>
+<span class="fc" id="L865">                }</span>
+                try {
+<span class="fc" id="L867">                    driver.get(&quot;https://staging.nivaancare.co.in&quot;);</span>
+<span class="fc" id="L868">                    test.log(LogStatus.INFO, &quot;Navigated to main page&quot;);</span>
+            
+<span class="fc" id="L870">                    driver.get(&quot;https://staging.nivaancare.co.in/patient&quot;);</span>
+<span class="fc" id="L871">                    test.log(LogStatus.INFO, &quot;Navigated to patient page&quot;);</span>
+<span class="fc" id="L872">                    Thread.sleep(2000);</span>
+            
+<span class="fc" id="L874">                    driver.get(&quot;https://staging.nivaancare.co.in/patient/&quot;+ adjustedPatientID +&quot;/dashboard&quot;);</span>
+<span class="fc" id="L875">                    test.log(LogStatus.INFO, &quot;Navigated to specific patient dashboard&quot;);</span>
+<span class="fc" id="L876">                    Thread.sleep(5000);</span>
+<span class="fc" id="L877">                    driver.findElement(By.xpath(&quot;//div[text()='Prescription']&quot;)).click();</span>
+<span class="fc" id="L878">                    test.log(LogStatus.INFO, &quot;Clicked on Prescription tab&quot;);</span>
+<span class="fc" id="L879">                    Thread.sleep(2000);</span>
+<span class="fc" id="L880">                    driver.findElement(By.xpath(&quot;//button[text()=' New Prescription']&quot;)).click();</span>
+<span class="fc" id="L881">                    test.log(LogStatus.INFO, &quot;Clicked on New Prescription button&quot;);</span>
+<span class="fc" id="L882">                    Thread.sleep(6000);</span>
+<span class="fc" id="L883">                    driver.findElement(By.xpath(&quot;//*[@placeholder='YYYY-MM-DD']&quot;)).click();</span>
+<span class="fc" id="L884">                    Thread.sleep(4000);</span>
+<span class="fc" id="L885">                    By calendarTableLocator = By.xpath(&quot;div.rs-calendar-table-cell&quot;);</span>
+
+                    // Find all date cells within the calendar table
+<span class="fc" id="L888">                    List&lt;WebElement&gt; dateCells = driver.findElements(calendarTableLocator);</span>
+            
+                    // Iterate through each date cell
+<span class="pc bpc" id="L891" title="1 of 2 branches missed.">                    for (WebElement dateCell : dateCells) {</span>
+                        // Check if the cell has the &quot;rs-calendar-table-cell-is-today&quot; class, indicating it's today's date
+<span class="nc bnc" id="L893" title="All 2 branches missed.">                        if (dateCell.getAttribute(&quot;class&quot;).contains(&quot;rs-calendar-table-cell-is-today&quot;)) {</span>
+                            // Click on the cell to select today's date
+<span class="nc" id="L895">                            dateCell.click();</span>
+<span class="nc" id="L896">                            break; // Exit the loop once today's date is selected</span>
+                        }
+<span class="nc" id="L898">                    }</span>
+<span class="fc" id="L899">                    Thread.sleep(4000);</span>
+<span class="fc" id="L900">                    driver.findElement(By.xpath(&quot;//button[text()='OK']&quot;)).click();</span>
+<span class="fc" id="L901">                    Thread.sleep(2000);</span>
+<span class="fc" id="L902">                    test.log(LogStatus.INFO, &quot;Selected date&quot;);</span>
+<span class="fc" id="L903">                driver.findElement(By.xpath(&quot;//*[@id='root']/div[2]/div[2]/div[2]/div[1]/div/div[10]/div/div/div/div[2]&quot;)).click();</span>
+<span class="fc" id="L904">                Thread.sleep(2000);</span>
+                 // Assuming the checkbox elements have the following XPath
+<span class="fc" id="L906">                 String checkboxLabel=&quot;Tests&quot;;</span>
+<span class="fc" id="L907">        By checkboxLocator = By.xpath(&quot;//div[@class='rs-checkbox-checker']/label[contains(text(), '&quot; + checkboxLabel + &quot;')]&quot;);</span>
+
+        // Find the checkbox element based on the label text
+<span class="fc" id="L910">        WebElement checkboxElement = driver.findElement(checkboxLocator);</span>
+
+        // Click on the checkbox to select it
+<span class="fc" id="L913">        checkboxElement.click();</span>
+<span class="fc" id="L914">        Thread.sleep(2000);</span>
+<span class="fc" id="L915">        test.log(LogStatus.INFO, &quot;Selected Tests checkbox&quot;);</span>
+<span class="fc" id="L916">                driver.findElement(By.xpath(&quot;//div[text()='Save Details']&quot;)).click();</span>
+<span class="fc" id="L917">                Thread.sleep(5000);</span>
+<span class="fc" id="L918">                WebElement publiElement= driver.findElement(By.xpath(&quot;//*[@id='root']/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div[3]/div/div/div/div[1]/div[2]/div[4]/div/span&quot;));</span>
+<span class="fc" id="L919">                   Thread.sleep(2000);</span>
+<span class="fc" id="L920">                   publiElement.click();</span>
+                    //publish the report 
+<span class="fc" id="L922">                Thread.sleep(3000);</span>
+<span class="fc" id="L923">                test.log(LogStatus.INFO, &quot;click on publish element&quot;);</span>
+<span class="fc" id="L924">                    WebElement publish =driver.findElement(By.xpath(&quot;//*[@class='rs-btn rs-btn-primary']&quot;));</span>
+<span class="fc" id="L925">                    publish.click();</span>
+<span class="fc" id="L926">                    Thread.sleep(3000);</span>
+<span class="fc" id="L927">                    test.log(LogStatus.INFO, &quot;click on publish button&quot;);</span>
+                    //Alert handling
+                     // Switch the focus to the alert
+<span class="fc" id="L930">                        Alert alert = driver.switchTo().alert();</span>
+                
+                        // Get the text of the alert (optional)
+<span class="fc" id="L933">                        String alertText = alert.getText();</span>
+<span class="fc" id="L934">                        System.out.println(&quot;Alert Text: &quot; + alertText);</span>
+                
+                        // Accept the alert (click OK)
+<span class="fc" id="L937">                        alert.accept();</span>
+<span class="fc" id="L938">                        Thread.sleep(5000);</span>
+<span class="fc" id="L939">                        test.log(LogStatus.INFO, &quot;Alert accepted&quot;);</span>
+<span class="fc" id="L940">                        test.log(LogStatus.PASS, &quot;Prescription added successfully&quot;);</span>
+
+
+      } 
+<span class="nc" id="L944">      catch(Exception e){</span>
+<span class="nc" id="L945">test.log(LogStatus.FAIL, &quot;Add Prescription failed&quot;);</span>
+<span class="fc" id="L946">      }</span>
+<span class="fc" id="L947">    }</span>
+    public void AddDepartment() throws InterruptedException{
+<span class="fc" id="L949">        test.log(LogStatus.INFO, &quot;Add Prescription test started&quot;);</span>
+<span class="fc" id="L950">        driver.get(&quot;https://staging.nivaancare.co.in/patient&quot;);</span>
+<span class="fc" id="L951">        Thread.sleep(3000);</span>
+<span class="fc" id="L952">        WebElement patientCountElement = driver.findElement(By.xpath(&quot;/html/body/div[1]/div[2]/div[1]/div[3]/div[2]/div[1]/div&quot;));</span>
+<span class="fc" id="L953">        String patientCountText = patientCountElement.getText();</span>
+<span class="fc" id="L954">        String extractedPatientID = patientCountText.replaceAll(&quot;\\D+&quot;, &quot;&quot;); // Extracts the number only</span>
+        try {
+<span class="fc" id="L956">            int patientIDInt = Integer.parseInt(extractedPatientID);</span>
+<span class="fc" id="L957">            adjustedPatientID = String.valueOf(patientIDInt + 2515); // Adjust logic as needed</span>
+<span class="fc" id="L958">            test.log(LogStatus.INFO, &quot;Extracted patient ID: &quot; + extractedPatientID);</span>
+<span class="fc" id="L959">            test.log(LogStatus.INFO, &quot;Calculated adjusted patient ID: &quot; + adjustedPatientID);</span>
+<span class="nc" id="L960">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L961">            test.log(LogStatus.ERROR, &quot;Failed to extract patient ID from UI: &quot; + e.getMessage());</span>
+<span class="fc" id="L962">        }</span>
+        try {
+<span class="fc" id="L964">            driver.get(&quot;https://staging.nivaancare.co.in&quot;);</span>
+<span class="fc" id="L965">            test.log(LogStatus.INFO, &quot;Navigated to main page&quot;);</span>
+    
+<span class="fc" id="L967">            driver.get(&quot;https://staging.nivaancare.co.in/patient&quot;);</span>
+<span class="fc" id="L968">            test.log(LogStatus.INFO, &quot;Navigated to patient page&quot;);</span>
+<span class="fc" id="L969">            Thread.sleep(2000);</span>
+    
+<span class="fc" id="L971">            driver.get(&quot;https://staging.nivaancare.co.in/patient/&quot;+ adjustedPatientID +&quot;/dashboard&quot;);</span>
+<span class="fc" id="L972">            test.log(LogStatus.INFO, &quot;Navigated to specific patient dashboard&quot;);</span>
+<span class="fc" id="L973">            Thread.sleep(5000);</span>
+<span class="fc" id="L974">            driver.findElement(By.xpath(&quot;//button[text()=' Department']&quot;)).click();</span>
+<span class="fc" id="L975">            test.log(LogStatus.INFO, &quot;click on department button&quot;);</span>
+<span class="fc" id="L976">            Thread.sleep(5000);</span>
+<span class="fc" id="L977">            driver.findElement(By.xpath(&quot;//span[text()='Select Department']&quot;)).click();</span>
+<span class="fc" id="L978">            test.log(LogStatus.INFO, &quot;click on select department button&quot;);</span>
+<span class="fc" id="L979">            Thread.sleep(2000);</span>
+<span class="fc" id="L980">            driver.findElement(By.xpath(&quot;//*[@class='rs-picker-select-menu-item' and text()='PMS']&quot;)).click();</span>
+<span class="fc" id="L981">            test.log(LogStatus.INFO, &quot;select department&quot;);</span>
+<span class="fc" id="L982">            Thread.sleep(2000);</span>
+<span class="fc" id="L983">            driver.findElement(By.xpath(&quot;//span[text()='Doctor']&quot;)).click();</span>
+<span class="fc" id="L984">            Thread.sleep(2000);</span>
+<span class="fc" id="L985">            driver.findElement(By.xpath(&quot;//*[@class='rs-picker-select-menu-item' and text()='Dr Rohit Gulati']&quot;)).click();</span>
+<span class="fc" id="L986">            Thread.sleep(2000);</span>
+<span class="fc" id="L987">            driver.findElement(By.xpath(&quot;//span[text()='Select Status']&quot;)).click();</span>
+<span class="fc" id="L988">            Thread.sleep(2000);</span>
+<span class="fc" id="L989">            driver.findElement(By.xpath(&quot;//*[@class='rs-picker-select-menu-item' and text()='1st Consult Done']&quot;)).click();</span>
+<span class="fc" id="L990">            Thread.sleep(2000);</span>
+<span class="fc" id="L991">            driver.findElement(By.xpath(&quot;//span[text()='Consultant Mode']&quot;)).click();</span>
+<span class="fc" id="L992">            Thread.sleep(2000);</span>
+<span class="fc" id="L993">            driver.findElement(By.xpath(&quot;//*[@class='rs-picker-select-menu-item' and text()='In-Hospital']&quot;)).click();</span>
+<span class="fc" id="L994">            Thread.sleep(2000);</span>
+<span class="fc" id="L995">            driver.findElement(By.xpath(&quot;//button[text()='Save']&quot;)).click();</span>
+<span class="fc" id="L996">            Thread.sleep(2000);</span>
+<span class="fc" id="L997">            test.log(LogStatus.PASS, &quot;Add Department test completed&quot;);</span>
+
+        } 
+<span class="nc" id="L1000">        catch(Exception e){</span>
+<span class="nc" id="L1001">  test.log(LogStatus.FAIL, &quot;Add Department  failed&quot;);</span>
+<span class="fc" id="L1002">        }</span>
+<span class="fc" id="L1003">      }</span>
     @Test
     public void testcase1() throws InterruptedException{
-<span class="fc" id="L853">        TestCase1 test=new TestCase1();</span>
-<span class="fc" id="L854">   WebDriver driver1= test.setup();</span>
-<span class="fc" id="L855">   test.login(driver1);</span>
-<span class="fc" id="L856">    test.addDoctorsDetails(&quot;10:00AM&quot;, &quot;04:00PM&quot;);</span>
-<span class="fc" id="L857">  test.AddPatientDetailsForAppointmentCase2();</span>
-<span class="fc" id="L858">  test.VerifyStatus();</span>
-<span class="fc" id="L859">    test.tearDown();</span>
-<span class="fc" id="L860">    }</span>
+<span class="fc" id="L1006">        TestCase1 test=new TestCase1();</span>
+<span class="fc" id="L1007">   WebDriver driver1= test.setup();</span>
+<span class="fc" id="L1008">   test.login(driver1);</span>
+<span class="fc" id="L1009">    test.addDoctorsDetails(&quot;10:00AM&quot;, &quot;04:00PM&quot;);</span>
+<span class="fc" id="L1010">  test.AddPatientDetailsForAppointmentCase2();</span>
+<span class="fc" id="L1011">  test.VerifyStatus();</span>
+<span class="fc" id="L1012">test.AddDepartment();</span>
+<span class="fc" id="L1013">  test.addPrescription();</span>
+
+<span class="fc" id="L1015">    test.tearDown();</span>
+<span class="fc" id="L1016">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,4 +1,4 @@
-name: ElevateNow Automation Tests
+name: Nivaan Automation Tests
 
 on:
   pull_request:

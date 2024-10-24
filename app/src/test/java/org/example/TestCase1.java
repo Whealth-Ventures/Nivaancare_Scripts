@@ -606,7 +606,7 @@
 //             break;
 //         }
 //     }
-// WebElement DocElement=driver.findElement(By.xpath("//*[@id='dialog-:r5:']/div/div/div[2]/div/div[5]/div/div/div/div"));
+// WebElement DocElement=driver.findElement(By.xpath("//span[text()='Doctor']"));
 // DocElement.click();
 // Thread.sleep(2000);
 // // List<WebElement> docs=driver.findElements(By.className("rs-picker-select-menu-item"));
@@ -1010,9 +1010,9 @@
 //         TestCase1 test=new TestCase1();
 //    WebDriver driver1= test.setup();
 //    test.login(driver1);
-//     test.addDoctorsDetails("10:00AM", "04:00PM");
-//   test.AddPatientDetailsForAppointmentCase2();
-//   test.VerifyStatus();
+// //     test.addDoctorsDetails("10:00AM", "04:00PM");
+// //   test.AddPatientDetailsForAppointmentCase2();
+// //   test.VerifyStatus();
 // test.AddDepartment();
 //   test.addPrescription();
 

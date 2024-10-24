@@ -3,10 +3,12 @@ package org.example;
 import java.util.List;
 import java.util.Random;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class TestCase2 {
@@ -218,12 +220,52 @@ Thread.sleep(3000);
 
 }
 
+//goal creation from settings
+public void createGoalFromSettings(String goalName, String TargetValue, String Frequency, String Notification,String Reminder) throws InterruptedException{
+    driver.get("https://staging.nivaancare.co.in/settings");
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//div[text()='Global Configurations']")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//div[text()='Goal Creations']")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//*[@placeholder='Goal Name']")).sendKeys(goalName);
+    Thread.sleep(1000);
+    driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div/div[4]/div/img")).click();
+    Thread.sleep(1000);
+    driver.findElement(By.xpath("//*[@placeholder='Value']")).sendKeys(TargetValue);
+    Thread.sleep(1000);
+WebElement frequency=driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div/div[5]/div[3]/div/select"));
+frequency.click();
+Thread.sleep(1000);
+Select select=new Select(frequency);
+select.selectByVisibleText(Frequency);
+Thread.sleep(1000);
+
+driver.findElement(By.xpath("//*[@placeholder='Message is sent after enabling the goal on user profile']")).sendKeys(Notification);
+Thread.sleep(1000);
+driver.findElement(By.xpath("//*[@placeholder='Reminder is sent everyday at 5pm for all the goals assigned to patients']")).sendKeys(Reminder);
+Thread.sleep(1000);
+
+driver.findElement(By.xpath("//div[text()='Save']")).click();
+Thread.sleep(4000);
+driver.findElement(By.xpath("//*[@id='root']/div[2]/div[2]/div/div/div[2]/div/div[2]/div/table/tr[1]/td[2]/div/div/div[2]/div")).click();
+Thread.sleep(5000);
+driver.findElement(By.xpath("//div[text()='Update']")).click();
+Thread.sleep(5000);
+driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/table/tr[1]/td[2]/div/div/div[3]/div")).click();
+Alert alert=driver.switchTo().alert();
+alert.accept();
+Thread.sleep(3000);
+
+}
+
  @Test
     public void testcase2() throws InterruptedException{
         TestCase2 test=new TestCase2();
 test.setup();
 test.login();
-   test.createPatient();
+  test.createPatient();
+test.createGoalFromSettings("testGoal", "50", "Weekly", "Notification", "Reminder");
     test.tearDown();
 }
 }

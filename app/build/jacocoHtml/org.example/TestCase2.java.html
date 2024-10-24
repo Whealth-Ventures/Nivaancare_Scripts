@@ -176,20 +176,20 @@ public WebDriver setup(){
 <span class="fc" id="L176">    driver.findElement(By.xpath(&quot;//span[text()='Select Care Managers']&quot;)).click();</span>
 <span class="fc" id="L177">    Thread.sleep(1000);</span>
 <span class="fc" id="L178">    List&lt;WebElement&gt; CareManagers=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
-<span class="pc bpc" id="L179" title="1 of 2 branches missed.">    for (WebElement CareManager : CareManagers) {</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">    for (WebElement CareManager : CareManagers) {</span>
 <span class="pc bpc" id="L180" title="1 of 2 branches missed.">        if(CareManager.getText().equals(careManager)){</span>
-<span class="fc" id="L181">            CareManager.click();</span>
-<span class="fc" id="L182">            break;</span>
+<span class="nc" id="L181">            CareManager.click();</span>
+<span class="nc" id="L182">            break;</span>
         }
-<span class="nc" id="L184">    }</span>
+<span class="fc" id="L184">    }</span>
 <span class="fc" id="L185">    Thread.sleep(1000);</span>
 <span class="fc" id="L186">    driver.findElement(By.xpath(&quot;//span[text()='Select Revenue Managers']&quot;)).click();</span>
 <span class="fc" id="L187">    Thread.sleep(1000);</span>
 <span class="fc" id="L188">    List&lt;WebElement&gt; RevenueManagers=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
-<span class="pc bpc" id="L189" title="1 of 2 branches missed.">    for (WebElement revenueManager : RevenueManagers) {</span>
-<span class="fc bfc" id="L190" title="All 2 branches covered.">        if(revenueManager.getText().equals(revenuemanger)){</span>
-<span class="fc" id="L191">           revenueManager.click();</span>
-<span class="fc" id="L192">            break;</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">    for (WebElement revenueManager : RevenueManagers) {</span>
+<span class="pc bpc" id="L190" title="1 of 2 branches missed.">        if(revenueManager.getText().equals(revenuemanger)){</span>
+<span class="nc" id="L191">           revenueManager.click();</span>
+<span class="nc" id="L192">            break;</span>
         }
 <span class="fc" id="L194">    }</span>
 
@@ -198,22 +198,22 @@ public WebDriver setup(){
 <span class="fc" id="L198">    Thread.sleep(1000);</span>
 <span class="fc" id="L199">    List&lt;WebElement&gt;Sources=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
 <span class="pc bpc" id="L200" title="1 of 2 branches missed.">    for (WebElement Source : Sources) {</span>
-<span class="fc bfc" id="L201" title="All 2 branches covered.">        if(Source.getText().equals(source)){</span>
-<span class="fc" id="L202">           Source.click();</span>
-<span class="fc" id="L203">            break;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        if(Source.getText().equals(source)){</span>
+<span class="nc" id="L202">           Source.click();</span>
+<span class="nc" id="L203">            break;</span>
         }
-<span class="fc" id="L205">    }</span>
+<span class="nc" id="L205">    }</span>
 <span class="fc" id="L206">    Thread.sleep(5000);</span>
 <span class="fc" id="L207">    driver.findElement(By.xpath(&quot;//span[text()='Sub Source']&quot;)).click();</span>
 <span class="fc" id="L208">    Thread.sleep(1000);</span>
 <span class="fc" id="L209">    List&lt;WebElement&gt;SubSources=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
 <span class="pc bpc" id="L210" title="1 of 2 branches missed.">    for (WebElement Source : SubSources) {</span>
        
-<span class="pc bpc" id="L212" title="1 of 2 branches missed.">                if(Source.getText().equals(SubSource)){</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">                if(Source.getText().equals(SubSource)){</span>
 <span class="fc" id="L213">           Source.click();</span>
 <span class="fc" id="L214">            break;</span>
         }
-<span class="nc" id="L216">    }</span>
+<span class="fc" id="L216">    }</span>
 <span class="fc" id="L217">    Thread.sleep(5000);</span>
 <span class="fc" id="L218">    driver.findElement(By.xpath(&quot;//div[text()='Save Details']&quot;)).click();</span>
 <span class="fc" id="L219">    Thread.sleep(1000);</span>
@@ -258,15 +258,54 @@ public void createGoalFromSettings(String goalName, String TargetValue, String F
 <span class="fc" id="L258">Thread.sleep(3000);</span>
 
 <span class="fc" id="L260">}</span>
+//creating notes from settings
+public void creatingnotesfromSettings(String NoteName,String Category,String Title,String Content) throws InterruptedException{
+<span class="fc" id="L263">driver.get(&quot;https://staging.nivaancare.co.in/settings&quot;);</span>
+<span class="fc" id="L264">Thread.sleep(3000);</span>
+<span class="fc" id="L265">driver.findElement(By.xpath(&quot;//div[text()='Notes Categories']&quot;)).click();</span>
+<span class="fc" id="L266">Thread.sleep(2000);</span>
+<span class="fc" id="L267">driver.findElement(By.xpath(&quot;//*[@id=\&quot;root\&quot;]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[2]/div[2]/input&quot;)).sendKeys(NoteName);</span>
+<span class="fc" id="L268">Thread.sleep(2000);</span>
+<span class="fc" id="L269">driver.findElement(By.xpath(&quot;//div[text()='Save']&quot;)).click();</span>
+<span class="fc" id="L270">Thread.sleep(2000);</span>
+<span class="fc" id="L271">driver.findElement(By.xpath(&quot;//div[text()='Notes Templates']&quot;)).click();</span>
+<span class="fc" id="L272">Thread.sleep(2000);</span>
+<span class="fc" id="L273">driver.findElement(By.xpath(&quot;//span[text()='Select Category']&quot;)).click();</span>
+<span class="fc" id="L274">Thread.sleep(2000);</span>
+<span class="fc" id="L275">List&lt;WebElement&gt; categories=driver.findElements(By.className(&quot;rs-picker-select-menu-item&quot;));</span>
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">for(WebElement category: categories){</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">    if(category.getText().equals(Category)){</span>
+<span class="fc" id="L278">        category.click();</span>
+<span class="fc" id="L279">        break;</span>
+    }
+<span class="fc" id="L281">}</span>
+<span class="fc" id="L282">Thread.sleep(2000);</span>
+<span class="fc" id="L283">driver.findElement(By.xpath(&quot;//*[@placeholder='Title']&quot;)).sendKeys(Title);</span>
+<span class="fc" id="L284">Thread.sleep(2000);</span>
 
+<span class="fc" id="L286">driver.findElement(By.xpath(&quot;//button[text()='Save']&quot;)).click();</span>
+<span class="fc" id="L287">Thread.sleep(3000);</span>
+<span class="fc" id="L288">driver.findElement(By.xpath(&quot;//*[@id=\&quot;root\&quot;]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/div/table/tbody/tr[1]/td[2]/div/div[2]/div[1]/div&quot;)).click();</span>
+<span class="fc" id="L289">Thread.sleep(3000);</span>
+
+<span class="fc" id="L291">driver.findElement(By.xpath(&quot;/html/body/div[3]/div/div/div/div[3]/button[1]&quot;)).click();</span>
+<span class="fc" id="L292">Thread.sleep(3000);</span>
+<span class="fc" id="L293">driver.findElement(By.xpath(&quot;//*[@id=\&quot;root\&quot;]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/div/table/tbody/tr[1]/td[2]/div/div[2]/div[2]/div&quot;)).click();</span>
+<span class="fc" id="L294">Thread.sleep(3000);</span>
+<span class="fc" id="L295">Alert alert=driver.switchTo().alert();</span>
+<span class="fc" id="L296">alert.accept();</span>
+<span class="fc" id="L297">Thread.sleep(3000);</span>
+
+<span class="fc" id="L299">}</span>
  @Test
     public void testcase2() throws InterruptedException{
-<span class="fc" id="L264">        TestCase2 test=new TestCase2();</span>
-<span class="fc" id="L265">test.setup();</span>
-<span class="fc" id="L266">test.login();</span>
-<span class="fc" id="L267">  test.createPatient();</span>
-<span class="fc" id="L268">test.createGoalFromSettings(&quot;testGoal&quot;, &quot;50&quot;, &quot;Weekly&quot;, &quot;Notification&quot;, &quot;Reminder&quot;);</span>
-<span class="fc" id="L269">    test.tearDown();</span>
-<span class="fc" id="L270">}</span>
+<span class="fc" id="L302">        TestCase2 test=new TestCase2();</span>
+<span class="fc" id="L303">test.setup();</span>
+<span class="fc" id="L304">test.login();</span>
+<span class="fc" id="L305">  test.createPatient();</span>
+<span class="fc" id="L306">test.createGoalFromSettings(&quot;testGoal&quot;, &quot;50&quot;, &quot;Weekly&quot;, &quot;Notification&quot;, &quot;Reminder&quot;);</span>
+<span class="fc" id="L307">test.creatingnotesfromSettings(&quot;testNotes&quot;, &quot;Feedback&quot;,&quot;TestNoteTitle&quot; , &quot;Random Contents&quot;);</span>
+<span class="fc" id="L308">    test.tearDown();</span>
+<span class="fc" id="L309">}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

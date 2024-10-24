@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.TestCase2" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-24T11:03:23" hostname="indianrenterss-MacBook-Pro.local" time="86.79">
+<testsuite name="org.example.TestCase2" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-24T12:02:42" hostname="indianrenterss-MacBook-Pro.local" time="120.234">
   <properties/>
-  <testcase name="testcase2" classname="org.example.TestCase2" time="86.79"/>
+  <testcase name="testcase2" classname="org.example.TestCase2" time="120.234"/>
   <system-out><![CDATA[Initializing the driver
 ]]></system-out>
-  <system-err><![CDATA[Oct 24, 2024 4:33:25 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Oct 24, 2024 5:32:43 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 130
-Oct 24, 2024 4:33:25 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+Oct 24, 2024 5:32:43 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
 WARNING: Unable to find version of CDP to use for 130.0.6723.59. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>

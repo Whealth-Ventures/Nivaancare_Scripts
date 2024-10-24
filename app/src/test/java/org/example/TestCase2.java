@@ -258,7 +258,45 @@ alert.accept();
 Thread.sleep(3000);
 
 }
+//creating notes from settings
+public void creatingnotesfromSettings(String NoteName,String Category,String Title,String Content) throws InterruptedException{
+driver.get("https://staging.nivaancare.co.in/settings");
+Thread.sleep(3000);
+driver.findElement(By.xpath("//div[text()='Notes Categories']")).click();
+Thread.sleep(2000);
+driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[2]/div[2]/input")).sendKeys(NoteName);
+Thread.sleep(2000);
+driver.findElement(By.xpath("//div[text()='Save']")).click();
+Thread.sleep(2000);
+driver.findElement(By.xpath("//div[text()='Notes Templates']")).click();
+Thread.sleep(2000);
+driver.findElement(By.xpath("//span[text()='Select Category']")).click();
+Thread.sleep(2000);
+List<WebElement> categories=driver.findElements(By.className("rs-picker-select-menu-item"));
+for(WebElement category: categories){
+    if(category.getText().equals(Category)){
+        category.click();
+        break;
+    }
+}
+Thread.sleep(2000);
+driver.findElement(By.xpath("//*[@placeholder='Title']")).sendKeys(Title);
+Thread.sleep(2000);
 
+driver.findElement(By.xpath("//button[text()='Save']")).click();
+Thread.sleep(3000);
+driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/div/table/tbody/tr[1]/td[2]/div/div[2]/div[1]/div")).click();
+Thread.sleep(3000);
+
+driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div[3]/button[1]")).click();
+Thread.sleep(3000);
+driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/div/table/tbody/tr[1]/td[2]/div/div[2]/div[2]/div")).click();
+Thread.sleep(3000);
+Alert alert=driver.switchTo().alert();
+alert.accept();
+Thread.sleep(3000);
+
+}
  @Test
     public void testcase2() throws InterruptedException{
         TestCase2 test=new TestCase2();
@@ -266,6 +304,7 @@ test.setup();
 test.login();
   test.createPatient();
 test.createGoalFromSettings("testGoal", "50", "Weekly", "Notification", "Reminder");
+test.creatingnotesfromSettings("testNotes", "Feedback","TestNoteTitle" , "Random Contents");
     test.tearDown();
 }
 }

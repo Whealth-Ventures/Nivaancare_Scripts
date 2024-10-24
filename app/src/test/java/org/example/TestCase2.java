@@ -87,19 +87,8 @@ public WebDriver setup(){
             driver.quit();
         }
     }
-    
-    //method to create a new patient
-    public void createPatient() throws InterruptedException {
-        String name = generateFullName();
-        String mobile=generateMobileNumber();
-        String gender = generateGender();
-    String age = generateAge();
-        String email=generateEmailAddress(name);
-        String Hospital=generateHospital();
-        String source=generateSource();
-        String careManager=generateCareManager();
-        String revenuemanger=generateRevenueManager();
-        String SubSource=generateSubSource();
+    public void login() throws InterruptedException{
+      
         driver.get("https://staging.nivaancare.co.in/");
               
         // Enter mobile number
@@ -127,6 +116,20 @@ public WebDriver setup(){
    WebElement SignIn = driver.findElement(By.xpath("//*[@class='form-control  coreBtn text-white undefined']"));
    SignIn.click();
    Thread.sleep(3000);
+    }
+    
+    //method to create a new patient
+    public void createPatient() throws InterruptedException {
+        String name = generateFullName();
+        String mobile=generateMobileNumber();
+        String gender = generateGender();
+    String age = generateAge();
+        String email=generateEmailAddress(name);
+        String Hospital=generateHospital();
+        String source=generateSource();
+        String careManager=generateCareManager();
+        String revenuemanger=generateRevenueManager();
+        String SubSource=generateSubSource();
         //navigate to patient landing page
 driver.get("https://staging.nivaancare.co.in/dashboard");
 Thread.sleep(3000);
@@ -188,7 +191,7 @@ Thread.sleep(3000);
         }
     }
 
-    Thread.sleep(1000);
+    Thread.sleep(3000);
     driver.findElement(By.xpath("//span[text()='Source']")).click();
     Thread.sleep(1000);
     List<WebElement>Sources=driver.findElements(By.className("rs-picker-select-menu-item"));
@@ -219,6 +222,7 @@ Thread.sleep(3000);
     public void testcase2() throws InterruptedException{
         TestCase2 test=new TestCase2();
 test.setup();
+test.login();
    test.createPatient();
     test.tearDown();
 }

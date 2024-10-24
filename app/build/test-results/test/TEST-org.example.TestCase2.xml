@@ -1,12 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.TestCase2" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-23T11:25:28" hostname="indianrterssMBP.lan" time="51.69">
+<testsuite name="org.example.TestCase2" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-10-24T05:17:30" hostname="indianrenterss-MacBook-Pro.local" time="77.767">
   <properties/>
-  <testcase name="testcase2" classname="org.example.TestCase2" time="51.69"/>
+  <testcase name="testcase2" classname="org.example.TestCase2" time="77.767">
+    <failure message="org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;rs-picker-toggle-placeholder&quot; aria-placeholder=&quot;...&quot;&gt;Source&lt;/span&gt; is not clickable at point (259, 560). Other element would receive the click: &lt;span class=&quot;rs-picker-select-menu-item&quot;&gt;...&lt;/span&gt;&#10;  (Session info: chrome=130.0.6723.59)&#10;Build info: version: '4.19.1', revision: 'abe0ee07dc'&#10;System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.0.1', java.version: '17.0.12'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [95e4eafd62fa09560224d2c7692ee8bd, clickElement {id=f.E9645891ECE8D3981D772ED474BCA3FB.d.46B0C36075A45C982900BFA400AEA67C.e.273}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.59, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /var/folders/62/dcmvb2_90tn...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63798}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:63798/devtoo..., se:cdpVersion: 130.0.6723.59, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Element: [[ChromeDriver: chrome on mac (95e4eafd62fa09560224d2c7692ee8bd)] -&gt; xpath: //span[text()='Source']]&#10;Session ID: 95e4eafd62fa09560224d2c7692ee8bd" type="org.openqa.selenium.ElementClickInterceptedException">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;rs-picker-toggle-placeholder&quot; aria-placeholder=&quot;...&quot;&gt;Source&lt;/span&gt; is not clickable at point (259, 560). Other element would receive the click: &lt;span class=&quot;rs-picker-select-menu-item&quot;&gt;...&lt;/span&gt;
+  (Session info: chrome=130.0.6723.59)
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.0.1', java.version: '17.0.12'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [95e4eafd62fa09560224d2c7692ee8bd, clickElement {id=f.E9645891ECE8D3981D772ED474BCA3FB.d.46B0C36075A45C982900BFA400AEA67C.e.273}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.59, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /var/folders/62/dcmvb2_90tn...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63798}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:63798/devtoo..., se:cdpVersion: 130.0.6723.59, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on mac (95e4eafd62fa09560224d2c7692ee8bd)] -&gt; xpath: //span[text()='Source']]
+Session ID: 95e4eafd62fa09560224d2c7692ee8bd
+	at java.base@17.0.12/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base@17.0.12/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base@17.0.12/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base@17.0.12/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base@17.0.12/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at app//org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at app//org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at app//org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at app//org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at app//org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at app//org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at app//org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at app//org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at app//org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at app//org.example.TestCase2.createPatient(TestCase2.java:195)
+	at app//org.example.TestCase2.testcase2(TestCase2.java:226)
+	at java.base@17.0.12/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.12/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.12/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.12/java.lang.reflect.Method.invoke(Method.java:569)
+	at app//org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at app//org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at app//org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at app//org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at app//org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at app//org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base@17.0.12/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at app//org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at app//org.testng.TestRunner.run(TestRunner.java:614)
+	at app//org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at app//org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at app//org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at app//org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at app//org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at app//org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at app//org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at app//org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at app//org.testng.TestNG.runSuites(TestNG.java:1112)
+	at app//org.testng.TestNG.run(TestNG.java:1079)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:153)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at java.base@17.0.12/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.12/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.12/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.12/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
   <system-out><![CDATA[Initializing the driver
 ]]></system-out>
-  <system-err><![CDATA[Oct 23, 2024 4:55:29 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Oct 24, 2024 10:47:57 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 130
-Oct 23, 2024 4:55:29 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+Oct 24, 2024 10:47:57 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
 WARNING: Unable to find version of CDP to use for 130.0.6723.59. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>
